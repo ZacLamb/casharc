@@ -1,0 +1,44 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Contact</span></nav>
+    <h1>Let's talk finances</h1>
+    <p class="lead">Have a question before you apply? Send us a message and a funding specialist will get back to you quickly.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap two-col">
+    <form id="contactForm" class="card form-card" action="/api/lead" method="post" novalidate>
+      <input type="hidden" name="formType" value="contact">
+      <div class="hp" aria-hidden="true"><label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="two">
+        <div><label class="lbl" for="cfFirst">First name</label><input id="cfFirst" name="firstName" autocomplete="given-name" required></div>
+        <div><label class="lbl" for="cfLast">Last name</label><input id="cfLast" name="lastName" autocomplete="family-name" required></div>
+      </div>
+      <label class="lbl" for="cfEmail">Email</label>
+      <input id="cfEmail" name="email" type="email" autocomplete="email" required>
+      <label class="lbl" for="cfPhone">Phone</label>
+      <input id="cfPhone" name="phone" type="tel" autocomplete="tel" required>
+      <label class="lbl" for="cfMsg">Message</label>
+      <textarea id="cfMsg" name="message" rows="5"></textarea>
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <span>I agree to be contacted by Cash-Arc by phone, text message (including automated messages) and email. Consent is not a condition of funding. Message and data rates may apply. Reply STOP to opt out.</span>
+      </label>
+      <p class="form-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Send message</button>
+    </form>
+    <div>
+      <h2>Ready to move faster?</h2>
+      <p>If you already know you need funding, skip the back and forth. The application takes about two minutes and doesn't require a hard credit pull.</p>
+      <a href="/apply" class="btn btn-gold btn-lg">Apply now</a>
+      <% if (site.phone || site.email) { %>
+      <div class="contact-lines">
+        <% if (site.phone) { %><p><strong>Call:</strong> <a href="tel:<%= site.phone.replace(/\D/g,'') %>"><%= site.phone %></a></p><% } %>
+        <% if (site.email) { %><p><strong>Email:</strong> <a href="mailto:<%= site.email %>"><%= site.email %></a></p><% } %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+<%- include('partials/foot') %>

@@ -1,0 +1,11 @@
+<div class="faq">
+  <% list.forEach(function(f, idx){ %>
+  <details <%= idx === 0 ? 'open' : '' %>>
+    <summary><%= f[0] %></summary>
+    <p><%= f[1] %></p>
+  </details>
+  <% }) %>
+</div>
+<script type="application/ld+json">
+<%- JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: list.map(function(f){ return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }) %>
+</script>

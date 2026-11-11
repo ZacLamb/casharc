@@ -1,0 +1,22 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Industries</span></nav>
+    <h1>Industries we fund</h1>
+    <p class="lead">We fund hardworking businesses in nearly every industry across the United States. Here are a few we work with every day.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap cards-2">
+    <% industries.forEach(function(i){ %>
+    <a class="pcard ind-card" href="/industries/<%= i.slug %>">
+      <%- include('partials/icon', { name: i.icon }) %>
+      <h2><%= i.name %></h2>
+      <p>Funding for <%= i.need %>.</p>
+      <span class="more">See <%= i.name.toLowerCase() %> funding <%- include('partials/icon', { name: 'arrow' }) %></span>
+    </a>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/cta', { heading: "Don't see your industry? We probably still fund it." }) %>
+<%- include('partials/foot') %>

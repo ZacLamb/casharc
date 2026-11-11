@@ -1,0 +1,35 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap"><h1><%= doc === 'privacy' ? 'Privacy Policy' : 'Terms of Use' %></h1><p class="lead">Last updated <%= new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) %></p></div>
+</section>
+<section class="section">
+  <div class="wrap narrow prose">
+    <!-- PLACEHOLDER: have the client's attorney review and replace before launch. -->
+    <% if (doc === 'privacy') { %>
+      <h2>Information we collect</h2>
+      <p>When you apply or contact us, we collect the information you provide, such as your name, business name, email, phone number, business revenue and funding needs. We also collect basic usage data like pages visited and the referring website.</p>
+      <h2>How we use it</h2>
+      <p>We use your information to evaluate your funding request, contact you about your application, share it with funding partners who may provide your offer, and improve our website.</p>
+      <h2>Text messages</h2>
+      <p>If you consent to receive text messages, you may receive messages about your funding request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Mobile numbers and SMS consent are never sold or shared with third parties for their own marketing purposes.</p>
+      <h2>Sharing</h2>
+      <p>We share information with funding partners and service providers only as needed to process your request. We do not sell your personal information.</p>
+      <h2>Security</h2>
+      <p>We use encryption in transit and reasonable safeguards to protect your information.</p>
+      <h2>Contact</h2>
+      <p>Questions about this policy? Reach us through our <a href="/contact">contact page</a>.</p>
+    <% } else { %>
+      <h2>Use of this site</h2>
+      <p>This website provides information about commercial financing products for business purposes only. Submitting an application does not guarantee approval or funding.</p>
+      <h2>No offer of credit</h2>
+      <p>Content on this site, including funding estimates, is for informational purposes and is not an offer or commitment to provide funding. All funding is subject to underwriting review and approval.</p>
+      <h2>Merchant cash advances</h2>
+      <p>A merchant cash advance is a purchase of future receivables and is not a loan.</p>
+      <h2>Communications</h2>
+      <p>By submitting a form and giving consent, you agree to receive calls, texts and emails about your request as described in our <a href="/privacy">Privacy Policy</a>.</p>
+      <h2>Limitation of liability</h2>
+      <p>This site is provided "as is." Cash-Arc is not liable for any damages arising from your use of the site.</p>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/foot') %>

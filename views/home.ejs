@@ -1,0 +1,164 @@
+<%- include('partials/head') %>
+
+<section class="hero">
+  <svg class="arc-bg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="arcg" x1="0" x2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+    <path d="M-100 620 C 200 60, 1000 60, 1300 620" fill="none" stroke="url(#arcg)" stroke-width="2" opacity=".55"/>
+    <path d="M-100 660 C 220 120, 980 120, 1300 660" fill="none" stroke="url(#arcg)" stroke-width="90" opacity=".07"/>
+  </svg>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span> Funding businesses in all 50 states</p>
+      <h1>Business funding up to <span class="hl">$250K</span>, in your account as fast as tomorrow.</h1>
+      <p class="lead">One two-minute application. Same-day decisions. Approval based on how your business performs, not just your credit score.</p>
+      <ul class="checks">
+        <li><%- include('partials/icon', { name: 'check' }) %> No hard credit pull to apply</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Decisions as fast as same day</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Funds as fast as 24 hours</li>
+      </ul>
+      <div class="hero-actions">
+        <a href="/apply" class="btn btn-gold btn-lg">Get my funding offer <%- include('partials/icon', { name: 'arrow' }) %></a>
+        <a href="/how-it-works" class="btn btn-ghost-light btn-lg">How it works</a>
+      </div>
+    </div>
+
+    <form class="estimator card" action="/apply" method="get" aria-labelledby="est-title">
+      <h2 id="est-title">See how much you could get</h2>
+      <p class="muted">Move the slider. Takes 5 seconds.</p>
+      <label for="rev" class="lbl">Average monthly revenue <output id="revOut">$40,000</output></label>
+      <input type="range" id="rev" name="revenue" min="10000" max="300000" step="5000" value="40000">
+      <div class="range-ends"><span>$10K</span><span>$300K+</span></div>
+      <label for="tib" class="lbl">Time in business</label>
+      <select id="tib" name="tib">
+        <option value="lt6">Less than 6 months</option>
+        <option value="6-12">6 – 12 months</option>
+        <option value="1-2" selected>1 – 2 years</option>
+        <option value="2+">2+ years</option>
+      </select>
+      <div class="estimate" aria-live="polite">
+        <span class="est-label">Estimated funding range</span>
+        <strong id="estOut">$20,000 – $60,000</strong>
+      </div>
+      <input type="hidden" name="amount" id="estAmount" value="60000">
+      <button class="btn btn-primary btn-block btn-lg" type="submit">Check my real offer <%- include('partials/icon', { name: 'arrow' }) %></button>
+      <p class="fine">Estimate only, not an offer of funding. Final amounts depend on underwriting.</p>
+    </form>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap trust-row">
+    <div><%- include('partials/icon', { name: 'bolt' }) %><span><strong>2-minute</strong> application</span></div>
+    <div><%- include('partials/icon', { name: 'clock' }) %><span><strong>Same-day</strong> decisions</span></div>
+    <div><%- include('partials/icon', { name: 'shield' }) %><span><strong>No hard pull</strong> to apply</span></div>
+    <div><%- include('partials/icon', { name: 'flag' }) %><span><strong>All 50 states</strong> served</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">How it works</p>
+      <h2>From application to funded in three steps</h2>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <%- include('partials/icon', { name: 'doc' }) %>
+        <h3>Apply in 2 minutes</h3>
+        <p>Tell us about your business and how much you need. No paperwork piles, no branch visits.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <%- include('partials/icon', { name: 'bank' }) %>
+        <h3>Share bank statements</h3>
+        <p>Send your last few months of business statements. We review your deposits, not just your credit.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <%- include('partials/icon', { name: 'cash' }) %>
+        <h3>Get funded</h3>
+        <p>Review your offer, sign electronically and receive funds as fast as the next business day.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Funding options</p>
+      <h2>The right capital for what you need right now</h2>
+    </div>
+    <div class="cards-4">
+      <% products.forEach(function(p){ %>
+      <a class="pcard" href="/funding/<%= p.slug %>">
+        <h3><%= p.name %></h3>
+        <p><%= p.short %></p>
+        <dl>
+          <div><dt>Amount</dt><dd><%= p.range %></dd></div>
+          <div><dt>Speed</dt><dd><%= p.speed %></dd></div>
+        </dl>
+        <span class="more">Learn more <%- include('partials/icon', { name: 'arrow' }) %></span>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap compare-grid">
+    <div>
+      <p class="kicker">Why Cash-Arc</p>
+      <h2>Built for business owners who can't wait on a bank</h2>
+      <p class="lead-dark">Banks want years of tax returns, perfect credit and weeks of back and forth. We look at how your business actually performs and move at the speed you do.</p>
+      <a href="/apply" class="btn btn-primary btn-lg">Apply now</a>
+    </div>
+    <div class="compare card" role="table" aria-label="Cash-Arc compared with a traditional bank loan">
+      <div class="crow chead" role="row"><span role="columnheader"></span><span role="columnheader">Cash-Arc</span><span role="columnheader">Typical bank</span></div>
+      <div class="crow" role="row"><span role="rowheader">Application</span><span role="cell" class="win">2 minutes online</span><span role="cell">Hours of paperwork</span></div>
+      <div class="crow" role="row"><span role="rowheader">Decision</span><span role="cell" class="win">Same day</span><span role="cell">Weeks</span></div>
+      <div class="crow" role="row"><span role="rowheader">Funding</span><span role="cell" class="win">As fast as 24 hours</span><span role="cell">30 – 90 days</span></div>
+      <div class="crow" role="row"><span role="rowheader">Credit focus</span><span role="cell" class="win">Revenue first</span><span role="cell">Strong credit required</span></div>
+      <div class="crow" role="row"><span role="rowheader">Collateral</span><span role="cell" class="win">Usually not required</span><span role="cell">Often required</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Who we fund</p>
+      <h2>Funding for the businesses that keep America running</h2>
+    </div>
+    <div class="ind-grid">
+      <% industries.forEach(function(i){ %>
+      <a class="ind" href="/industries/<%= i.slug %>"><%- include('partials/icon', { name: i.icon }) %><span><%= i.name %></span></a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap req-grid">
+    <div class="req card">
+      <h2>Do you qualify?</h2>
+      <p class="muted">Most approved businesses have:</p>
+      <ul class="checks dark">
+        <li><%- include('partials/icon', { name: 'check' }) %> 6+ months in business</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> $15,000+ in monthly revenue</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> A U.S. business bank account</li>
+      </ul>
+      <p class="muted small">Don't check every box? Apply anyway. We review every application.</p>
+      <a href="/apply" class="btn btn-primary btn-block">Check my eligibility</a>
+    </div>
+    <div>
+      <p class="kicker">Questions</p>
+      <h2>Frequently asked questions</h2>
+      <%- include('partials/faq', { list: faqs }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/foot') %>

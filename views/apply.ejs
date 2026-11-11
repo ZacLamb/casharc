@@ -1,0 +1,114 @@
+<%- include('partials/head') %>
+
+<section class="apply-wrap">
+  <div class="wrap apply-grid">
+    <div class="apply-side">
+      <p class="kicker light">Free application</p>
+      <h1>Let's get your business funded</h1>
+      <p class="lead">Three quick steps. About two minutes. Checking your options will not affect your credit score.</p>
+      <ul class="checks">
+        <li><%- include('partials/icon', { name: 'check' }) %> Up to $250,000</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Decisions as fast as same day</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Funds as fast as 24 hours</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Your information is encrypted and never sold</li>
+      </ul>
+    </div>
+
+    <form id="applyForm" class="apply card" action="/api/lead" method="post" novalidate
+          data-prefill-amount="<%= prefill.amount %>" data-prefill-revenue="<%= prefill.revenue %>">
+      <div class="progress" aria-hidden="true"><span id="progBar"></span></div>
+      <p class="step-count" id="stepCount">Step 1 of 3</p>
+      <input type="hidden" name="formType" value="application">
+      <div class="hp" aria-hidden="true"><label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+
+      <fieldset class="fstep is-active" data-step="1">
+        <legend>How much funding do you need?</legend>
+        <div class="chips" role="radiogroup">
+          <label class="chip"><input type="radio" name="amount" value="$5K – $25K" required><span>$5K – $25K</span></label>
+          <label class="chip"><input type="radio" name="amount" value="$25K – $50K"><span>$25K – $50K</span></label>
+          <label class="chip"><input type="radio" name="amount" value="$50K – $100K"><span>$50K – $100K</span></label>
+          <label class="chip"><input type="radio" name="amount" value="$100K – $250K"><span>$100K – $250K</span></label>
+        </div>
+        <label class="lbl" for="use">What will you use it for?</label>
+        <select id="use" name="use">
+          <option value="">Select one (optional)</option>
+          <option>Working capital / cash flow</option>
+          <option>Payroll</option>
+          <option>Inventory</option>
+          <option>Equipment</option>
+          <option>Expansion / new location</option>
+          <option>Marketing</option>
+          <option>Debt refinance / consolidation</option>
+          <option>Other</option>
+        </select>
+        <button type="button" class="btn btn-primary btn-block btn-lg" data-next>Continue <%- include('partials/icon', { name: 'arrow' }) %></button>
+      </fieldset>
+
+      <fieldset class="fstep" data-step="2">
+        <legend>Tell us about your business</legend>
+        <label class="lbl" for="businessName">Business name</label>
+        <input id="businessName" name="businessName" type="text" autocomplete="organization" required>
+        <label class="lbl" for="industry">Industry</label>
+        <select id="industry" name="industry" required>
+          <option value="">Select your industry</option>
+          <% industries.forEach(function(i){ %><option><%= i.name %></option><% }) %>
+          <option>Professional services</option>
+          <option>Other</option>
+        </select>
+        <div class="two">
+          <div>
+            <label class="lbl" for="tibSel">Time in business</label>
+            <select id="tibSel" name="tib" required>
+              <option value="">Select</option>
+              <option>Less than 6 months</option>
+              <option>6 – 12 months</option>
+              <option>1 – 2 years</option>
+              <option>2 – 5 years</option>
+              <option>5+ years</option>
+            </select>
+          </div>
+          <div>
+            <label class="lbl" for="revenue">Monthly revenue</label>
+            <select id="revenue" name="revenue" required>
+              <option value="">Select</option>
+              <option data-max="10000">Under $10K</option>
+              <option data-max="25000">$10K – $25K</option>
+              <option data-max="50000">$25K – $50K</option>
+              <option data-max="100000">$50K – $100K</option>
+              <option data-max="250000">$100K – $250K</option>
+              <option data-max="99999999">$250K+</option>
+            </select>
+          </div>
+        </div>
+        <div class="nav-btns">
+          <button type="button" class="btn btn-ghost" data-back>Back</button>
+          <button type="button" class="btn btn-primary btn-lg" data-next>Continue <%- include('partials/icon', { name: 'arrow' }) %></button>
+        </div>
+      </fieldset>
+
+      <fieldset class="fstep" data-step="3">
+        <legend>Where should we send your offer?</legend>
+        <div class="two">
+          <div><label class="lbl" for="firstName">First name</label><input id="firstName" name="firstName" autocomplete="given-name" required></div>
+          <div><label class="lbl" for="lastName">Last name</label><input id="lastName" name="lastName" autocomplete="family-name" required></div>
+        </div>
+        <label class="lbl" for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+        <label class="lbl" for="phone">Mobile phone</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" required>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>By checking this box, I agree to be contacted by Cash-Arc about my funding request by phone, text message (including automated messages) and email at the number and email provided. Consent is not a condition of funding. Message and data rates may apply. Reply STOP to opt out. I agree to the <a href="/terms" target="_blank">Terms</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</span>
+        </label>
+        <p class="form-error" id="formError" role="alert" hidden></p>
+        <div class="nav-btns">
+          <button type="button" class="btn btn-ghost" data-back>Back</button>
+          <button type="submit" class="btn btn-gold btn-lg" id="submitBtn">See my options <%- include('partials/icon', { name: 'arrow' }) %></button>
+        </div>
+      </fieldset>
+      <p class="fine center"><%- include('partials/icon', { name: 'shield' }) %> 256-bit encrypted · No hard credit pull to apply</p>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

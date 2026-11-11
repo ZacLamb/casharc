@@ -1,0 +1,51 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap page-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/funding">Funding Options</a> / <span><%= p.name %></span></nav>
+      <h1><%= p.name %></h1>
+      <p class="lead"><%= p.intro %></p>
+      <a href="/apply" class="btn btn-gold btn-lg">Apply for <%= p.name.toLowerCase() %> <%- include('partials/icon', { name: 'arrow' }) %></a>
+    </div>
+    <div class="facts card">
+      <div><span>Funding amount</span><strong><%= p.range %></strong></div>
+      <div><span>Time to funds</span><strong><%= p.speed %></strong></div>
+      <div><span>Application</span><strong>2 minutes online</strong></div>
+      <div><span>Credit check to apply</span><strong>No hard pull</strong></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap two-col">
+    <div>
+      <h2>Who it's best for</h2>
+      <ul class="checks dark">
+        <% p.bestFor.forEach(function(b){ %><li><%- include('partials/icon', { name: 'check' }) %> <%= b %></li><% }) %>
+      </ul>
+    </div>
+    <div>
+      <h2>How it works</h2>
+      <ol class="numlist">
+        <% p.howItWorks.forEach(function(s){ %><li><%= s %></li><% }) %>
+      </ol>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap narrow">
+    <h2><%= p.name %> FAQs</h2>
+    <%- include('partials/faq', { list: p.faqs }) %>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Other funding options</h2>
+    <div class="cards-3">
+      <% products.filter(function(x){ return x.slug !== p.slug; }).forEach(function(o){ %>
+      <a class="pcard" href="/funding/<%= o.slug %>"><h3><%= o.name %></h3><p><%= o.short %></p><span class="more">Learn more <%- include('partials/icon', { name: 'arrow' }) %></span></a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('partials/cta') %>
+<%- include('partials/foot') %>

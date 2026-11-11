@@ -1,0 +1,27 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>How It Works</span></nav>
+    <h1>How Cash-Arc works</h1>
+    <p class="lead">No branch visits and no stacks of paperwork. Here's exactly what happens after you apply.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap narrow">
+    <ol class="timeline">
+      <li><span>1</span><div><h2>Apply online in about two minutes</h2><p>Tell us how much you need, what it's for and a few basics about your business. Starting an application does not require a hard credit pull.</p></div></li>
+      <li><span>2</span><div><h2>Send your recent bank statements</h2><p>We'll ask for your last three to four months of business bank statements. These show us how your business really performs, which is what most of our decisions are based on.</p></div></li>
+      <li><span>3</span><div><h2>Review your offer</h2><p>A funding specialist walks you through your options: amount, cost and repayment schedule. No pressure, and no obligation to accept.</p></div></li>
+      <li><span>4</span><div><h2>Sign and get funded</h2><p>Sign electronically from your phone or computer. Funds are sent straight to your business bank account, often within one business day.</p></div></li>
+    </ol>
+    <div class="center"><a href="/apply" class="btn btn-primary btn-lg">Start step 1 now</a></div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap narrow">
+    <h2>Frequently asked questions</h2>
+    <%- include('partials/faq', { list: faqs }) %>
+  </div>
+</section>
+<%- include('partials/cta') %>
+<%- include('partials/foot') %>

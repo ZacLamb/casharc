@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js')</script>
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>">
+  <link rel="canonical" href="<%= canonical %>">
+  <% if (typeof noindex !== 'undefined' && noindex) { %><meta name="robots" content="noindex"><% } %>
+  <meta name="theme-color" content="#0a1633">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cash-Arc">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:url" content="<%= canonical %>">
+  <meta property="og:image" content="<%= site.logo %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css?v=1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "Cash-Arc",
+    "url": "<%= base %>",
+    "logo": "<%= site.logo %>",
+    "description": "Fast business funding up to $250,000 for small businesses nationwide.",
+    "areaServed": { "@type": "Country", "name": "United States" }<% if (site.phone) { %>,
+    "telephone": "<%= site.phone %>"<% } %>
+  }
+  </script>
+  <% if (ga) { %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ga %>"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<%= ga %>');</script>
+  <% } %>
+  <% if (fbPixel) { %>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','<%= fbPixel %>');fbq('track','PageView');</script>
+  <% } %>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="top">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand" aria-label="Cash-Arc home">
+      <img src="<%= site.logo %>" alt="Cash-Arc" width="133" height="50" fetchpriority="high">
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu" class="nav-menu" aria-label="Main">
+      <a href="/funding">Funding Options</a>
+      <a href="/industries">Industries</a>
+      <a href="/how-it-works">How It Works</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <% if (site.phone) { %><a class="nav-phone" href="tel:<%= site.phone.replace(/\D/g,'') %>"><%= site.phone %></a><% } %>
+      <a href="/apply" class="btn btn-primary btn-sm">Apply Now</a>
+    </nav>
+  </div>
+</header>
+<main id="main">

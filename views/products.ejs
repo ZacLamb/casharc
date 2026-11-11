@@ -1,0 +1,25 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Funding Options</span></nav>
+    <h1>Business funding options</h1>
+    <p class="lead">From a quick cash advance to equipment financing, we match you with the right capital for what you need, up to $250,000.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap cards-2">
+    <% products.forEach(function(p){ %>
+    <a class="pcard big" href="/funding/<%= p.slug %>">
+      <h2><%= p.name %></h2>
+      <p><%= p.intro %></p>
+      <dl>
+        <div><dt>Amount</dt><dd><%= p.range %></dd></div>
+        <div><dt>Speed</dt><dd><%= p.speed %></dd></div>
+      </dl>
+      <span class="more">Explore <%= p.name %> <%- include('partials/icon', { name: 'arrow' }) %></span>
+    </a>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/cta', { heading: 'Not sure which option fits? Apply once and we will match you.' }) %>
+<%- include('partials/foot') %>

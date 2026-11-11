@@ -1,0 +1,43 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/industries">Industries</a> / <span><%= i.name %></span></nav>
+    <h1>Business funding for <%= i.name.toLowerCase() %></h1>
+    <p class="lead"><%= i.detail %></p>
+    <a href="/apply" class="btn btn-gold btn-lg">Get funding for my business <%- include('partials/icon', { name: 'arrow' }) %></a>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap two-col">
+    <div>
+      <h2>What <%= i.name.toLowerCase() %> use funding for</h2>
+      <p>Owners in this space most often use Cash-Arc funding for <%= i.need %>. Because approval is based mainly on your revenue, you can move on opportunities when they show up instead of waiting weeks on a bank.</p>
+      <ul class="checks dark">
+        <li><%- include('partials/icon', { name: 'check' }) %> Up to $250,000</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Same-day decisions</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> Funds as fast as 24 hours</li>
+        <li><%- include('partials/icon', { name: 'check' }) %> No hard credit pull to apply</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Programs that fit</h2>
+      <div class="stack">
+        <% products.forEach(function(p){ %>
+        <a class="mini" href="/funding/<%= p.slug %>"><strong><%= p.name %></strong><span><%= p.range %> · <%= p.speed %></span></a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap">
+    <h2 class="center">Other industries we fund</h2>
+    <div class="ind-grid">
+      <% industries.filter(function(x){ return x.slug !== i.slug; }).forEach(function(o){ %>
+      <a class="ind" href="/industries/<%= o.slug %>"><%- include('partials/icon', { name: o.icon }) %><span><%= o.name %></span></a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('partials/cta') %>
+<%- include('partials/foot') %>

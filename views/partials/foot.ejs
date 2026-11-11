@@ -1,0 +1,41 @@
+</main>
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="<%= site.logo %>" alt="Cash-Arc" width="133" height="50" loading="lazy" class="footer-logo">
+      <p>Fast, simple business funding up to $250,000 for businesses across America.</p>
+      <a href="/apply" class="btn btn-primary btn-sm">Apply in 2 minutes</a>
+    </div>
+    <div>
+      <h3>Funding</h3>
+      <ul>
+        <% products.forEach(function(p){ %><li><a href="/funding/<%= p.slug %>"><%= p.name %></a></li><% }) %>
+      </ul>
+    </div>
+    <div>
+      <h3>Industries</h3>
+      <ul>
+        <% industries.slice(0,6).forEach(function(i){ %><li><a href="/industries/<%= i.slug %>"><%= i.name %></a></li><% }) %>
+        <li><a href="/industries">All industries</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <% if (site.phone) { %><li><a href="tel:<%= site.phone.replace(/\D/g,'') %>"><%= site.phone %></a></li><% } %>
+        <% if (site.email) { %><li><a href="mailto:<%= site.email %>"><%= site.email %></a></li><% } %>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <p>Cash-Arc provides access to commercial financing for business purposes only. Not all applicants will qualify. Funding amounts, terms and timing depend on underwriting review. A merchant cash advance is a purchase of future receivables and is not a loan. Applying does not require a hard credit inquiry.</p>
+    <p>&copy; <%= year %> Cash-Arc. All rights reserved. · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a></p>
+  </div>
+</footer>
+<div class="mobile-cta"><a href="/apply" class="btn btn-primary">Check my funding — 2 min</a></div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>
